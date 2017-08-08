@@ -1,0 +1,7 @@
+<window id="modalDialog" title="Purchase Confirmed" border="normal" width="560px" height="560px" position="center,center" closable="true">
+
+    <vlayout>
+        <label value="Thank you for shopping with us....." />
+    </vlayout>
+
+</window>

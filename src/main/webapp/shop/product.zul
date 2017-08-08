@@ -1,0 +1,50 @@
+
+<!-- using binder="@init(queueName='productMvvmQueue')" in div below will break @global-command -->
+<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm')  @init('org.zkoss.essentials.vm.ProductVM')" >
+
+    <groupbox  closable="false"  style="margin: 10px">
+        <caption id="productOne_caption" label="@load(vm.product.name)"/>
+
+        <grid sclass="GridLayoutNoBorder" style="border: none;" >
+            <columns>
+                <column hflex="min" align="right"/>
+                <column hflex="min" align="left"/>
+            </columns>
+            <rows>
+                <row>
+                    <label value="SKU/Code:"/>
+                    <textbox id="codeTextbox" value="@bind(vm.product.code)" readonly="true"/>
+                </row>
+                <row>
+                    <label value="Name:"/>
+                    <textbox id="nameTextbox" cols="50" value="@bind(vm.product.name)" readonly="true"/>
+                </row>
+                <row>
+                    <label value="Description:"/>
+                    <textbox id="descriptionTextbox" rows="5" cols="60" value="@bind(vm.product.description)" readonly="true"/>
+                </row>
+                <row>
+                    <label value="In Stock:"/>
+                    <intbox id="stockIntbox" value="@bind(vm.product.stock)" readonly="true"/>
+                </row>
+                <row>
+                    <label value="Price:"/>
+                    <decimalbox id="priceDecimalbox" value="@bind(vm.product.price)" scale="2"  format="#,##0.##" readonly="true"/>
+                </row>
+                <row>
+                    <label value="Quantity:"/>
+                    <hbox>
+                        <intbox id="orderQuantityIntbox" constraint="no negative"  />
+                        <separator spacing="30px" />
+
+                        <button id="addToOrderButton" label="Add to Order" onClick="@global-command('clickToOrderProduct',
+                                product=vm.product, orderQuantity=orderQuantityIntbox.value)" />
+                    </hbox>
+                </row>
+            </rows>
+
+        </grid>
+
+    </groupbox>
+
+</div>

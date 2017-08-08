@@ -1,0 +1,95 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<!--<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>-->
+<!--<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>-->
+<zk>
+
+    <borderlayout apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('org.zkoss.essentials.vm.OrderProductViewModel')" hflex="1" vflex="1"  >
+
+        <north height="100px" border="none" >
+            <include src="/shop/banner.zul" headerLabel="MVVM embedding MVVM design pattern demo" />
+        </north>
+
+        <center id="mainContent" autoscroll="true" >
+
+            <panel border="none" style="margin: 20px;" hflex="1"   >
+
+                <panelchildren>
+
+                    <vlayout>
+
+                        <groupbox hflex="1" closable="false"  >
+
+                            <include product="${vm.productOne}" src="/shop/product.zul"/>
+                            <include product="${vm.productTwo}" src="/shop/product.zul"/>
+
+                            <button id="restockButton" label="Restock 10 Items to each product" height="30px" onClick="@command('restockAction')" />
+
+                        </groupbox>
+
+                        <separator height="10px" />
+
+                        <groupbox  hflex="1" closable="false"   >
+                            <caption label="My Order"/>
+                            <grid id="orderDetailsGrid" model="@bind(vm.orderDetailList)" sclass="GridLayoutNoBorder" style="border: normal; margin: 0 20px">
+
+                                <columns>
+                                    <column hflex="1" align="center" >SKU</column>
+                                    <column hflex="1" align="center">Product</column>
+                                    <column hflex="1" align="center">Price</column>
+                                    <column hflex="1" align="center">Quantity</column>
+                                    <column hflex="1" align="center">Total</column>
+                                </columns>
+                                <template name="model">
+                                    <row>
+                                        <label value="@bind(each.product.code)" />
+                                        <label value="@bind(each.product.name)"/>
+                                        <label value="@bind(each.product.currencyPrice)"/>
+                                        <label value="@bind(each.quantity)" />
+                                        <label value="@bind(each.currencyPrice)"/>
+                                    </row>
+                                </template>
+                            </grid>
+
+                            <grid id="totalOrderPriceGrid" sclass="GridLayoutNoBorder" style="border: none; margin: 0 20px" visible="@load(not empty vm.orderDetailList)" >
+
+                                <columns>
+                                    <column hflex="1" align="center" ></column>
+                                    <column hflex="1" align="center"></column>
+                                    <column hflex="1" align="center"></column>
+                                    <column hflex="1" align="right"></column>
+                                    <column hflex="1" align="center"></column>
+                                </columns>
+                                <rows>
+                                    <row>
+                                        <!-- need to use 3 <label /> for right align above to work. <cell colspan="3" /> won't work. -->
+                                        <!--<cell colspan="3" />-->
+                                        <label />
+                                        <label />
+                                        <label />
+                                        <label value="Total: "/>
+                                        <label id="totalOrderPriceLabel" value="@bind( vm.order.totalPriceLabel )" />
+                                    </row>
+                                </rows>
+                            </grid>
+
+                            <space height="20px" />
+                            <hbox>
+                                <button id="buyButton" label="Buy" width="100px" height="30px" onClick="@command('buyButtonAction')" />
+                                <separator width="30px" />
+                                <button id="clearOrderButton" label="Clear Order" width="100px" height="30px" onClick="@command('clearOrders')"/>
+
+                                <separator width="30px" />
+                            </hbox>
+                        </groupbox>
+                    </vlayout>
+
+                </panelchildren>
+            </panel>
+        </center>
+
+
+        <south height="50px" border="none">
+            <include src="/shop/footer.zul"/>
+        </south>
+    </borderlayout>
+</zk>

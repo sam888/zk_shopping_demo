@@ -1,0 +1,56 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<!--<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>-->
+<!--<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>-->
+<zk>
+
+    <style>
+
+        .bold-font {
+            font-weight: bold;
+        }
+    </style>
+
+
+	<borderlayout hflex="1" vflex="1" >
+
+		<north height="100px" border="none" >
+			<include src="/shop/banner.zul" headerLabel="ZK design patterns MVC vs MVVM showdown!"/>
+		</north>
+
+		<center id="mainContent" style="margin-top: 50px" border="none" >
+
+
+                <vbox>
+
+                    <hbox>
+                        <div width="70px" />
+                        <a href="/mvc.zul"  sclass="bold-font" target="_blank" label="Classic MVC demo"/>
+                        This demo page is implemented using MVC design pattern, i.e. SelectorComposer.
+                    </hbox>
+
+                    <space />
+                    <hbox>
+                        <div width="70px" />
+                        <a href="/mvc_embed_mvvm.zul"  sclass="bold-font" target="_blank" label="MVC embedding MVVM demo"/>
+                        This demo page is implemented using MVC design pattern to embed two panels using MVVM (i.e. Model-View-ViewModel) design pattern.
+                    </hbox>
+
+                    <space />
+
+                    <hbox>
+                        <div width="70px" />
+                        <a href="/mvvm_embed_mvvm.zul"  sclass="bold-font" target="_blank" label="MVVM embedding MVVM demo"/>
+                        This demo page is implemented using MVVM design pattern to embed two panels using MVVM design pattern.
+                    </hbox>
+
+                </vbox>
+
+
+		</center>
+
+
+		<south height="50px" border="none">
+			<include src="/shop/footer.zul"/>
+		</south>
+	</borderlayout>
+</zk>
