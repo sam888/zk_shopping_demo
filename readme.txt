@@ -22,7 +22,7 @@
          View-Model can fire events to update UI components in view layer automatically once
          data from View-Model (e.g. DTO/POJO/JPA/List) bound to UI components changes, e.g. 
          use @NotifyChange. 
-    Con: More complext than MVC
+    Con: More complex than MVC
     
     * This demo also shows how to communicate between MVVM and MVVM
     
