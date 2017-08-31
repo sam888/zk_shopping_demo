@@ -1,6 +1,6 @@
 
- The demo app shows three different ways of implementing the same demo page by using 3 different 
- design patterns.
+ This demo app is modified from https://github.com/zkoss/zkessentials/tree/zk8-jpa and shows three different
+ ways of implementing the same demo page by using 3 different design patterns.
  
  1. Classic MVC
     Pro: The easiest to implement and learn
